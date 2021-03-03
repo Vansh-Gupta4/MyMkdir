@@ -1,0 +1,44 @@
+#!/usr/bin/env node
+let fs=require("fs");
+
+
+//creates file and write content in it
+//fs.writeFileSync("a","1234")
+
+
+//creates folder
+//fs.mkdirSync("b")
+
+//delete folder
+//fs.rmdirSync("b")
+
+
+(function () {
+
+   let n=process.argv[2];
+   let name=process.argv[3];
+
+   if(!Number.isInteger(+n) || n<=0 ){
+      console.log("Invalid input");
+      return;
+   }
+   try{
+   if(fs.existsSync(`${name}-0`)){
+      for(let i=0;i<n;i++){
+         fs.rmdirSync(`${name}-${i}`)
+      }
+   
+   }else{
+      for(let i=0;i<n;i++){
+         fs.mkdirSync(`${name}-${i}`)
+      }
+   }
+
+}catch(err){
+   console.log("some error occurred,possibly n is greater than expected")
+}
+
+})();
+
+
+
